@@ -1,13 +1,13 @@
 formula = input().split()
 operand = ['+', '-', '*', '/']
-stuck = []
+stack = []
 
 for c in formula:
     if c in operand:
-        b = str(stuck.pop())
-        a = str(stuck.pop())
-        stuck.append(eval(''.join([a, c, b])))
+        b = str(stack.pop())
+        a = str(stack.pop())
+        stack.append(eval(''.join([a, c, b])))
     else:
-        stuck.append(c)
+        stack.append(c)
 
-print(stuck.pop())
+print(stack.pop())
