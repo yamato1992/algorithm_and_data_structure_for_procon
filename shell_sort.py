@@ -1,24 +1,32 @@
-def insertion_sort(A, g, n):
+def insertion_sort(a, g, n):
+    cnt = 0
     for i in range(g, n):
-        v = A[i]
+        v = a[i]
         j = i - g
-        while j >= 0 and A[j] > v:
-            A[j + g] = A[j]
+        while j >= 0 and a[j] > v:
+            a[j + g] = a[j]
             j = j - g
-        A[j + g] = v
-    return A
+            cnt += 1
+        a[j + g] = v
+    return cnt
 
-def shell_sort(A, n):
-    G = list()
+def shell_sort(a, n):
+    cnt = 0
+    g = []
     h = 1
-    while h < n:
-        G.append(h)
+    while h <= n:
+        g.append(h)
         h = 3 * h + 1
-    G.reverse()
-    for i in range(len(G)):
-        insertion_sort(A, G[i], n)
-    return A
+    g.reverse()
+    m = len(g)
+    print(m)
+    print(*g)
+    for i in range(m):
+        cnt += insertion_sort(a, g[i], n)
+    print(cnt)
 
 n = int(input())
 a = [int(input()) for _ in range(n)]
-print(shell_sort(a, n))
+
+shell_sort(a, n)
+print('\n'.join(map(str, a)))
